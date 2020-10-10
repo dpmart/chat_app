@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "250084409084",
+    "firebase_url": "https://dpmart-chat.firebaseio.com",
+    "project_id": "dpmart-chat",
+    "storage_bucket": "dpmart-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250084409084:android:721413b82b5c7f3d7b6179",
+        "android_client_info": {
+          "package_name": "br.com.dpmart.chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250084409084-lomt50d0o2tanbdkk1vss8mm2phkkhj5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy2vX_jZ6_bNDIyz9yPCgexvBHMqYo6wA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250084409084-lomt50d0o2tanbdkk1vss8mm2phkkhj5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
