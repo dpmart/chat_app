@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //Firebase.app();
-  print(Firebase.apps.length);
   try {
     await Firebase.initializeApp();
   } on FirebaseException catch (err) {

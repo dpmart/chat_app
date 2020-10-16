@@ -3,6 +3,7 @@ import 'package:chat_app/widgets/auth_form.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -40,9 +41,18 @@ class _AuthScreenState extends State<AuthScreen> {
         );
       }
 
+      final ref = FirebaseStorage.instance
+          .ref()
+          .child('user_images')
+          .child(userCredential.user.uid + '.jpg');
+
+      await ref.putFile(authData.image).onComplete;
+      final url = await ref.getDownloadURL();
+
       final userData = {
         "name": authData.name,
         "email": authData.email,
+        "imageUrl": url,
       };
 
       await FirebaseFirestore.instance
@@ -75,27 +85,29 @@ class _AuthScreenState extends State<AuthScreen> {
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).primaryColor,
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Stack(
-              children: [
-                AuthForm(_handleSubmit),
-                if (_isLoading)
-                  Positioned.fill(
-                    child: Container(
-                      margin: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(0, 0, 0, 0.5),
-                      ),
-                      child: Center(
-                        child: CircularProgressIndicator(),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Stack(
+                children: [
+                  AuthForm(_handleSubmit),
+                  if (_isLoading)
+                    Positioned.fill(
+                      child: Container(
+                        margin: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(0, 0, 0, 0.5),
+                        ),
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
                       ),
                     ),
-                  ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
